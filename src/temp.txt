@@ -1,0 +1,102 @@
+<table className="ui large red table">
+        <thead>
+          <tr>
+            <th className="ten wide">{region}</th>
+            <th className="ten wide">Cases</th>
+            <th className="ten wide">Recovered</th>
+            <th className="ten wide">Deaths</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((country) => (
+            <tr>
+              <td>{country.name}</td>
+              <td>{country.coronaData.coronaCases}</td>
+              <td>{country.coronaData.totalDeaths}</td>
+              <td>{country.coronaData.totalRecovered}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+
+
+      return (
+    <div className="table">
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell align="right">{region}</TableCell>
+              <TableCell align="right">Cases</TableCell>
+              <TableCell align="right">Recovered</TableCell>
+              <TableCell align="right">Deaths</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((country) => (
+              <TableRow key={country.name}>
+                <TableCell>
+                  <IconButton
+                    aria-label="expand row"
+                    size="small"
+                    onClick={() => setOpen(!open)}
+                  >
+                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  </IconButton>
+                </TableCell>
+                <TableCell align="right">{country.name}</TableCell>
+                <TableCell align="right">
+                  {country.coronaData.coronaCases}
+                </TableCell>
+                <TableCell align="right">
+                  {country.coronaData.totalRecovered}
+                </TableCell>
+                <TableCell align="right">
+                  {country.coronaData.totalDeaths}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
+
+
+
+
+
+
+  <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box margin={1}>
+                <Typography variant="h6" gutterBottom component="div">
+                  History
+                </Typography>
+                <Table size="small" aria-label="purchases">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Date</TableCell>
+                      <TableCell>Customer</TableCell>
+                      <TableCell align="right">Amount</TableCell>
+                      <TableCell align="right">Total price ($)</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        123
+                      </TableCell>
+                      <TableCell>123</TableCell>
+                      <TableCell align="right">12</TableCell>
+                      <TableCell align="right">333</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRow>
