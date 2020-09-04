@@ -1,19 +1,40 @@
 import React from "react";
 import "./App.css";
 import Header from "./Header";
-import Sidebar from "./Sidebar";
 import CountryReport from "./CountryReport";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import StateReport from "./StateReport";
+import CityReport from "./CityReport";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 function App() {
   return (
     <div className="app">
       <Router>
-        <Route exact path="/dashboard">
+        <div className="app__body">
           <Header />
-          <div className="app__body">
-            <CountryReport />
-          </div>
+          <Switch>
+            <Route exact path="/dashboard">
+              <CountryReport />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route exact path="/dashboard/:country">
+              <StateReport />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route exact path="/dashboard/:country/:state">
+              <CityReport />
+            </Route>
+          </Switch>
+        </div>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/signUp">
+          <SignUp />
         </Route>
       </Router>
     </div>

@@ -10,6 +10,7 @@
 }
 .header__left > img {
   height: 50px;
+  cursor: pointer;
 }
 
 .header__info {
