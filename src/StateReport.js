@@ -7,11 +7,10 @@ import "./StateReport.css";
 import { useStateValue } from "./StateProvider";
 import { useHistory } from "react-router-dom";
 
-function StateReport() {
+function StateReport({ country }) {
   const [stateFilterData, setStateFilterData] = useState([]);
   const [stateData, setStateData] = useState([]);
   const [{ user }] = useStateValue();
-  const { country } = useParams();
   const history = useHistory();
 
   useEffect(() => {
@@ -46,7 +45,10 @@ function StateReport() {
   }, []);
 
   const onStateClick = (stateName) => {
-    history.push(`/dashboard/${country}/${stateName}`);
+    history.push({
+      pathname: "/dashboard",
+      search: `country=${country}&state=${stateName}`,
+    });
   };
 
   const returnStateData = () => {

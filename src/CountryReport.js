@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import { useStateValue } from "./StateProvider";
 import { useHistory } from "react-router-dom";
 
-function Report() {
+function CountryReport() {
   const [countryData, setCountryData] = useState([]);
   const [countriesFilterData, setCountriesFilterData] = useState([]);
   const [{ user }] = useStateValue();
@@ -44,7 +44,10 @@ function Report() {
   }, []);
 
   const onCountryClick = (countryName) => {
-    history.push(`/dashboard/${countryName}`);
+    history.push({
+      pathname: "/dashboard",
+      search: `country=${countryName}`,
+    });
   };
 
   const returnCountryData = () => {
@@ -71,4 +74,4 @@ function Report() {
   );
 }
 
-export default Report;
+export default CountryReport;

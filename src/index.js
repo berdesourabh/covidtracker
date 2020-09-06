@@ -6,12 +6,20 @@ import * as serviceWorker from "./serviceWorker";
 import { StateProvider } from "./StateProvider";
 import reducer, { initialState } from "./reducer";
 import "semantic-ui-css/semantic.min.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
+    <Router>
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <App />
+      </StateProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

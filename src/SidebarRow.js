@@ -1,6 +1,5 @@
 import React from "react";
 import "./SidebarRow.css";
-import { Avatar } from "@material-ui/core";
 import { Dropdown } from "semantic-ui-react";
 
 function SidebarRow({ title, placeholder, options }) {

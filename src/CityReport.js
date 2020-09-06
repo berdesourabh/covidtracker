@@ -7,11 +7,10 @@ import "./CityReport.css";
 import { useStateValue } from "./StateProvider";
 import { useHistory } from "react-router-dom";
 
-function CityReport() {
+function CityReport({ country, state }) {
   const [cityFilterData, setCityFilterData] = useState([]);
   const [cityData, setCityData] = useState([]);
   const [{ user }] = useStateValue();
-  const { country, state } = useParams();
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +29,7 @@ function CityReport() {
       setCityData(response.data.countryReports[0].stateReports[0].cityReports);
     }
     fetchcityData();
-  }, []);
+  }, [country, state]);
 
   useEffect(() => {
     const getCityFilterData = async () => {

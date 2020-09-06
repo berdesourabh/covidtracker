@@ -4,7 +4,7 @@ import "./Table.css";
 function Table({ region, data }) {
   return (
     <div className="table">
-      <table class="ui large teal table">
+      <table className="ui large teal table">
         <thead>
           <tr>
             <th>{region}</th>

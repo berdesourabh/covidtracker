@@ -18,7 +18,13 @@ function Header() {
       </div>
       <div className="header__right">
         <div className="header__info">
-          <h4>{user?.userName}</h4>
+          {user.userName ? (
+            <h4>{user?.userName}</h4>
+          ) : (
+            <div className="ui button" onClick={() => history.push("/login")}>
+              Login
+            </div>
+          )}
         </div>
       </div>
     </div>

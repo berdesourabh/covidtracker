@@ -23,7 +23,9 @@ function Login() {
       .then((response) => {
         dispatch({ type: actionTypes.SET_USER, user: response.data });
         // localStorage.setItem("user", response.data);
-        history.push("/dashboard");
+        history.push({
+          pathname: "/dashboard",
+        });
       })
       .catch((err) => console.log(err.message));
   };
@@ -52,13 +54,7 @@ function Login() {
               value="abc"
             />
           </div>
-          <button
-            className="ui button"
-            variant="primary"
-            type="submit"
-            onClick={handleSignIn}
-          >
-            {" "}
+          <button className="ui button" type="submit" onClick={handleSignIn}>
             Sign In
           </button>
         </form>

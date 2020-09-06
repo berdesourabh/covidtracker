@@ -1,7 +1,4 @@
-.userDetail {
-  padding: 0 300px;
-}
-
-.userDetail__required {
-  color: red;
+.signup {
+  padding: 20px 100px;
+  height: 100%;
 }
