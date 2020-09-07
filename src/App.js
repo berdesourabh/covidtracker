@@ -17,7 +17,9 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <Route render={() => <Redirect to={{ pathname: "/dashboard" }} />} />
+        <Route exact path="/">
+          <Redirect to="/dashboard" /> />
+        </Route>
         <Route exact path="/login">
           <Login />
         </Route>

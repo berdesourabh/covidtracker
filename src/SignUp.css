@@ -1,4 +1,20 @@
 .signup {
-  padding: 20px 100px;
-  height: 100%;
+  height: 100vh;
+  place-items: center;
+  padding: 70px;
+}
+
+.signup__header {
+  display: flex;
+  justify-content: center;
+}
+.signup__header > img {
+  object-fit: contain;
+  height: 90px;
+  margin-bottom: 40px;
+  padding-right: 20px;
+}
+
+.signup__form {
+  margin-left: 400px;
 }
