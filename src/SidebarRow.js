@@ -27,7 +27,28 @@ function SidebarRow({ title, placeholder, options }) {
   };
   return (
     <div className="sidebarRow">
-      <div class="ui visible inverted left vertical sidebar menu">
+      <h4>{title}</h4>
+      <select
+        name={title}
+        multiple=""
+        className="ui fluid dropdown"
+        onChange={handleChange}
+      >
+        <option value="">Select</option>
+        {options.map((opt) => (
+          <option key={opt.key} value={opt.value}>
+            {opt.text}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+export default SidebarRow;
+
+{
+  /* <div class="ui visible inverted left vertical sidebar menu">
         <h4>{title}</h4>
         <select
           name={title}
@@ -42,26 +63,5 @@ function SidebarRow({ title, placeholder, options }) {
             </option>
           ))}
         </select>
-      </div>
-    </div>
-  );
-}
-
-export default SidebarRow;
-
-{
-  /* <h4>{title}</h4>
-  <select
-    name={title}
-    multiple=""
-    className="ui fluid dropdown"
-    onChange={handleChange}
-  >
-    <option value="">Select</option>
-    {options.map((opt) => (
-      <option key={opt.key} value={opt.value}>
-        {opt.text}
-      </option>
-    ))}
-  </select> */
+      </div> */
 }
