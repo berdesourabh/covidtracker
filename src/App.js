@@ -9,8 +9,6 @@ import {
   useLocation,
   Redirect,
 } from "react-router-dom";
-import StateReport from "./StateReport";
-import CityReport from "./CityReport";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Reports from "./Reports";
@@ -27,9 +25,9 @@ function App() {
           <SignUp />
         </Route>
         <div className="app__body">
-          <Header />
           <Switch>
             <Route exact path="/dashboard">
+              <Header />
               <Reports />
             </Route>
           </Switch>

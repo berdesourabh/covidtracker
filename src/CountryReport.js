@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 function CountryReport() {
   const [countryData, setCountryData] = useState([]);
   const [countriesFilterData, setCountriesFilterData] = useState([]);
-  const [{ user }] = useStateValue();
+  const [{ user, countryFilter }] = useStateValue();
   const history = useHistory();
 
   useEffect(() => {
@@ -24,10 +24,17 @@ function CountryReport() {
           Authorization: `Bearer ${user?.jwtToken}`,
         },
       });
-      setCountryData(response.data.countryReports);
+      if (countryFilter) {
+        let data = response.data.countryReports.filter(
+          (report) => report.name === countryFilter
+        );
+        setCountryData(data);
+      } else {
+        setCountryData(response.data.countryReports);
+      }
     }
     fetchData();
-  }, []);
+  }, [countryFilter]);
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -63,7 +70,7 @@ function CountryReport() {
 
   return (
     <div className="countryReport">
-      <Sidebar countryData={countriesFilterData} />
+      <Sidebar title="Country" filterData={countriesFilterData} />
       <Table
         region="Country"
         data={returnCountryData}

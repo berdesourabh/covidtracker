@@ -1,26 +1,19 @@
-// export const initialState = {
-//   user: {
-//     userName: "abc123@gmail.com",
-//     firstName: null,
-//     lastName: null,
-//     jwtToken:
-//       "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmMxMjNAZ21haWwuY29tIiwiaWF0IjoxNTk5MjQxNTA3LCJleHAiOjE1OTkyNDUxMDd9.3httIycsZIr6GYypH451INMGgUHC5-BPAsCP8XV3y0k",
-//     authorities: [
-//       {
-//         authority: "ROLE_USER",
-//       },
-//     ],
-//   },
-// };
 export const initialState = {
   user: {},
+  countryFilter: "",
+  stateFilter: "",
+  cityFilter: "",
 };
 export const actionTypes = {
   SET_USER: "SET_USER",
   ADD_USER: "ADD_USER",
+  COUNTRY_FILTER: "COUNTRY_FILTER",
+  STATE_FILTER: "STATE_FILTER",
+  CITY_FILTER: "CITY_FILTER",
 };
 
 const reducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case actionTypes.SET_USER:
       return {
@@ -31,6 +24,21 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case actionTypes.COUNTRY_FILTER:
+      return {
+        ...state,
+        countryFilter: action.countryFilter,
+      };
+    case actionTypes.STATE_FILTER:
+      return {
+        ...state,
+        stateFilter: action.stateFilter,
+      };
+    case actionTypes.CITY_FILTER:
+      return {
+        ...state,
+        cityFilter: action.cityFilter,
       };
     default:
       return state;

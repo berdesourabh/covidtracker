@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 function StateReport({ country }) {
   const [stateFilterData, setStateFilterData] = useState([]);
   const [stateData, setStateData] = useState([]);
-  const [{ user }] = useStateValue();
+  const [{ user, stateFilter }] = useStateValue();
   const history = useHistory();
 
   useEffect(() => {
@@ -25,10 +25,17 @@ function StateReport({ country }) {
           Authorization: `Bearer ${user?.jwtToken}`,
         },
       });
-      setStateData(response.data.countryReports[0].stateReports);
+      if (stateFilter) {
+        let data = response.data.countryReports[0].stateReports.filter(
+          (report) => report.name === stateFilter
+        );
+        setStateData(data);
+      } else {
+        setStateData(response.data.countryReports[0].stateReports);
+      }
     }
     fetchStateData();
-  }, []);
+  }, [stateFilter]);
 
   useEffect(() => {
     const getStateFilterData = async () => {
@@ -63,7 +70,7 @@ function StateReport({ country }) {
   };
   return (
     <div className="stateReport">
-      <Sidebar stateData={stateFilterData} countryValue={country} />
+      <Sidebar title="State" filterData={stateFilterData} />
       <Table
         region="State"
         data={returnStateData}

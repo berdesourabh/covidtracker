@@ -10,8 +10,7 @@ import { useHistory } from "react-router-dom";
 function CityReport({ country, state }) {
   const [cityFilterData, setCityFilterData] = useState([]);
   const [cityData, setCityData] = useState([]);
-  const [{ user }] = useStateValue();
-  const history = useHistory();
+  const [{ user, cityFilter }] = useStateValue();
 
   useEffect(() => {
     async function fetchcityData() {
@@ -26,10 +25,19 @@ function CityReport({ country, state }) {
           Authorization: `Bearer ${user?.jwtToken}`,
         },
       });
-      setCityData(response.data.countryReports[0].stateReports[0].cityReports);
+      if (cityFilter) {
+        let data = response.data.countryReports[0].stateReports[0].cityReports.filter(
+          (report) => report.cityName === cityFilter
+        );
+        setCityData(data);
+      } else {
+        setCityData(
+          response.data.countryReports[0].stateReports[0].cityReports
+        );
+      }
     }
     fetchcityData();
-  }, [country, state]);
+  }, [cityFilter]);
 
   useEffect(() => {
     const getCityFilterData = async () => {
@@ -57,7 +65,7 @@ function CityReport({ country, state }) {
   };
   return (
     <div className="cityReport">
-      <Sidebar cityData={cityFilterData} />
+      <Sidebar title="City" filterData={cityFilterData} />
       <Table region="City" data={returnCityData} />
     </div>
   );
