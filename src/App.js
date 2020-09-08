@@ -12,13 +12,17 @@ import {
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Reports from "./Reports";
+import Patientsignup from "./patientSignup";
+import Brdcrmb from "./BrdCrmb";
 
 function App() {
   return (
     <div className="app">
+
+
       <Router>
         <Route exact path="/">
-          <Redirect to="/dashboard" /> />
+          <Redirect to="/dashboard" />
         </Route>
         <Route exact path="/login">
           <Login />
@@ -31,6 +35,12 @@ function App() {
             <Route exact path="/dashboard">
               <Header />
               <Reports />
+            </Route>
+          </Switch>
+
+          <Switch>
+          <Route exact path="/addPatient">
+             <Patientsignup/>
             </Route>
           </Switch>
         </div>
