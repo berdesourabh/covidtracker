@@ -15,6 +15,7 @@ function Header() {
           alt="covid-19"
           onClick={() => history.push("/dashboard")}
         />
+        <p>Covid-19 Tracker</p>
       </div>
       <div className="header__right">
         <div className="header__info">
