@@ -17,12 +17,11 @@ function Login() {
     e.preventDefault();
     axios
       .post("/login", {
-        email: "abc123@gmail.com",
-        password: "abc",
+        email: email,
+        password: password,
       })
       .then((response) => {
         dispatch({ type: actionTypes.SET_USER, user: response.data });
-        // localStorage.setItem("user", response.data);
         history.push({
           pathname: "/dashboard",
         });
@@ -41,7 +40,7 @@ function Login() {
               type="email"
               placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
-              value="abc123@gmail.com"
+              value={email}
             />
           </div>
 
@@ -51,7 +50,7 @@ function Login() {
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
-              value="abc"
+              value={password}
             />
           </div>
           <button className="ui button" type="submit" onClick={handleSignIn}>
