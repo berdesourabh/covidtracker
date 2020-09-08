@@ -18,3 +18,8 @@
 .signup__form {
   margin-left: 400px;
 }
+
+.ui.search>.results{
+  overflow-y: auto;
+max-height: 300px;
+}
