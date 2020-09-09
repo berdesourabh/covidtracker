@@ -21,7 +21,7 @@ resultRenderer.propTypes = {
   lastName: PropTypes.string,
 };
 
-function Patientsignup(props) {
+function SearchPatient(props) {
   const initialState = {
     loading: false,
     results: [],
@@ -66,8 +66,6 @@ function Patientsignup(props) {
           if (data.value.length === 0) {
             setState({ initialState });
           }
-
-          console.log(response.data);
 
           setState({ ...state, value: data.value, results: response.data });
         })
@@ -144,4 +142,4 @@ function Patientsignup(props) {
     </div>
   );
 }
-export default Patientsignup;
+export default SearchPatient;

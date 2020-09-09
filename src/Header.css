@@ -34,5 +34,17 @@
 }
 
 .header__right {
-  align-self: center;
+  white-space: nowrap;
+  padding-top: 15px;
+}
+
+.header__info__option {
+  display: flex;
+  align-items: center;
+}
+
+.header__info__option > p {
+  margin-left: 14px;
+  font-weight: bold;
+  font-size: 1.3rem;
 }

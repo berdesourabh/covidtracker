@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 
 function Header() {
@@ -19,13 +19,23 @@ function Header() {
       </div>
       <div className="header__right">
         <div className="header__info">
-          {user.userName ? (
-            <h4>{user?.userName}</h4>
-          ) : (
-            <div className="ui button" onClick={() => history.push("/login")}>
-              Login
+          {/* {user.userName ? ( */}
+          <div className="header__info__option">
+            <div
+              className="ui button"
+              onClick={() => history.push("/patients")}
+            >
+              My Patients
             </div>
-          )}
+            <p>Sourabh Berde</p>
+
+            {/* <h4>{user?.userName}</h4> */}
+          </div>
+          {/* ) : ( */}
+          {/* <div className="ui button" onClick={() => history.push("/login")}>
+              Login
+            </div> */}
+          {/* )} */}
         </div>
       </div>
     </div>

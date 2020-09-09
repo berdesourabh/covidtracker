@@ -1,0 +1,9 @@
+.patientList {
+  background-color: white;
+}
+
+.patientList__button {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}

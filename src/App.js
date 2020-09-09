@@ -12,8 +12,9 @@ import {
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Reports from "./Reports";
-import Patientsignup from "./patientSignup";
+import PatientDetail from "./PatientDetail";
 import BreadCrumbs from "./BreadCrumbs";
+import PatientList from "./PatientList";
 
 function App() {
   return (
@@ -29,17 +30,17 @@ function App() {
           <SignUp />
         </Route>
         <div className="app__body">
+          <Header />
           <Switch>
             <Route exact path="/dashboard">
-              <Header />
               <BreadCrumbs />
               <Reports />
             </Route>
-          </Switch>
-
-          <Switch>
-            <Route exact path="/addPatient">
-              <Patientsignup />
+            <Route exact path="/patients">
+              <PatientList />
+            </Route>
+            <Route exact path="/patients/add">
+              <PatientDetail />
             </Route>
           </Switch>
         </div>
