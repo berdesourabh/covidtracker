@@ -26,10 +26,6 @@ function PatientDetail() {
         country: country,
         state: countryState,
         city: city,
-        patient: {
-          coronaPositive: "Y",
-          symptoms: "fever",
-        },
       })
       .then((response) => {
         history.push("/dashboard");

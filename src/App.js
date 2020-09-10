@@ -15,6 +15,8 @@ import Reports from "./Reports";
 import PatientDetail from "./PatientDetail";
 import BreadCrumbs from "./BreadCrumbs";
 import PatientList from "./PatientList";
+import TablePaginationDemo from "./TablePaginationDemo";
+import EditPatient from "./EditPatient";
 
 function App() {
   return (
@@ -30,17 +32,28 @@ function App() {
           <SignUp />
         </Route>
         <div className="app__body">
-          <Header />
+          
           <Switch>
+          
             <Route exact path="/dashboard">
+              <Header />
               <BreadCrumbs />
               <Reports />
             </Route>
             <Route exact path="/patients">
+            <Header />
               <PatientList />
             </Route>
+            <Route exact path="/pagination">
+              <TablePaginationDemo />
+            </Route>
             <Route exact path="/patients/add">
+            <Header />
               <PatientDetail />
+            </Route>
+            <Route exact path="/patients/edit/:id">
+            <Header />
+              <EditPatient />
             </Route>
           </Switch>
         </div>
