@@ -54,7 +54,7 @@ function PatientList() {
       <div>
         <table className="ui table">
           <thead>
-            <tr>
+            <tr className="center aligned">
               <th>First Name</th>
               <th>Last Name</th>
               <th>E-mail address</th>
@@ -69,7 +69,7 @@ function PatientList() {
           </thead>
           <tbody>
             {result.map((row) => (
-              <tr key={row.patientId}>
+              <tr key={row.patientId} className="center aligned">
                 <td>{row.user.firstName}</td>
                 <td>{row.user.lastName}</td>
                 <td>{row.user.email}</td>
