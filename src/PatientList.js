@@ -7,14 +7,27 @@ import { useHistory } from "react-router-dom";
 
 function PatientList() {
   const [result, setResult] = useState([]);
-
   const history = useHistory();
-
+  
+  
   const fetch = () => {
-    let data = localStorage.getItem("user_info");
-    const [{ userName }] = data;
+    let user_data = localStorage.getItem("user_info");
+    let uname="";
+    let token="";
+    if (user_data) {
+      let userObj = JSON.parse(user_data);
+     
+      uname = userObj.userName
+      token = userObj.jwtToken;
+    }else{
+      history.push("/dashboard");
+    }
 
-    axios.get(`/patients/physician/${userName}`).then((response) => {
+    axios.get(`/patients/physician/${uname}`,{headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${token}`,
+    }}).then((response) => {
       setResult(response.data);
     });
   };

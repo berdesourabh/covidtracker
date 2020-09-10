@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "./axios";
 import "./PatientDetail.css";
 import { useHistory } from "react-router-dom";
+import { useStateValue } from "./StateProvider";
 
 function PatientDetail() {
   const [firstName, setFirstName] = useState("");
@@ -13,11 +14,25 @@ function PatientDetail() {
   const [countryState, setCountryState] = useState("");
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
-
+  const [physicianId, setPhysicianId] = useState("");
+  
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let user_data = localStorage.getItem("user_info");
+
+    let uname="";
+    let token = "";
+    if (user_data) {
+      let userObj = JSON.parse(user_data);
+     
+      uname = userObj.userName;
+      token = userObj.jwtToken;
+
+    }
+
     axios
       .post("/patient", {
         email: emailAddress,
@@ -26,12 +41,20 @@ function PatientDetail() {
         country: country,
         state: countryState,
         city: city,
-      })
+        physicianId: uname
+
+      },{headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token}`,
+      }})
       .then((response) => {
-        history.push("/dashboard");
+        history.push("/patients");
       })
       .catch((err) => console.log(err.message));
   };
+
+ 
 
   return (
     <div className="patientDetail">

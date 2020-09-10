@@ -22,8 +22,22 @@ function EditPatient() {
   const history = useHistory();
 
     useEffect(() => {
+
+      let user_data = localStorage.getItem("user_info");
+      let token= "";
+      if (user_data) {
+        let userObj = JSON.parse(user_data);
+        token = userObj.jwtToken;
+      }else{
+        history.push("/dashboard");
+      }
+
         axios
-            .get(`/patients/${id}`)
+            .get(`/patients/${id}`,{headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              Authorization: `Bearer ${token}`,
+            }})
           .then((response) => {
             const { user } = response.data;
             setFirstName(user.firstName);
@@ -44,6 +58,14 @@ function EditPatient() {
     }, [])
     const handleSubmit = (e) => {
       e.preventDefault();
+
+      let user_data = localStorage.getItem("user_info");
+      let token= "";
+      if (user_data) {
+        let userObj = JSON.parse(user_data);
+        token = userObj.jwtToken;
+      }
+
       axios
         .put("/patient", {
         
@@ -64,7 +86,11 @@ function EditPatient() {
         
         
          
-        })
+        },{headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`,
+        }})
         .then((response) => {
           history.push("/patients");
         })

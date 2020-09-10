@@ -131,7 +131,7 @@ function SignUp() {
               >
                 <option>Choose...</option>
                 <option>India</option>
-              </select>
+                </select>
             </div>
             <div className="five wide field">
               <label>State</label>
