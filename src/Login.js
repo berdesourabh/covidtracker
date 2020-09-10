@@ -10,7 +10,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [state, dispatch] = useStateValue();
- 
+
   const history = useHistory();
 
   const handleSignIn = (e) => {
@@ -22,21 +22,18 @@ function Login() {
       })
       .then((response) => {
         dispatch({ type: actionTypes.SET_USER, user: response.data });
-        localStorage.setItem('user_info',JSON.stringify(response.data));
+        localStorage.setItem("user_info", JSON.stringify(response.data));
         history.push({
           pathname: "/dashboard",
         });
       })
-      .catch((err) =>{
-      console.log(err.message)
-      if(err.response.status == 403){
-        alert("Invalid Credentials");
-      }
-      }
-      );
+      .catch((err) => {
+        console.log(err.message);
+        if (err.response.status == 403) {
+          alert("Invalid Credentials");
+        }
+      });
   };
-
- 
 
   return (
     <div className="login">
@@ -65,13 +62,14 @@ function Login() {
           <button className="ui button" type="submit" onClick={handleSignIn}>
             Sign In
           </button>
-          
         </form>
 
-        <Link className="login__signUpLink" to="/signUp">
-          Don't have account? Sign Up
-        </Link>
-        
+        <div className="login__signUpLink">
+          <Link to="/signUp">Don't have account? Sign Up</Link>
+        </div>
+        <div className="login__continueLink">
+          <Link to="/dashboard">Continue without login</Link>
+        </div>
       </div>
     </div>
   );

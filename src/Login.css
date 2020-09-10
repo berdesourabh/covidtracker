@@ -20,3 +20,7 @@
 .login__signInButton {
   margin-bottom: 30px;
 }
+
+.login__signUpLink {
+  padding: 10px;
+}

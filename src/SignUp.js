@@ -131,7 +131,7 @@ function SignUp() {
               >
                 <option>Choose...</option>
                 <option>India</option>
-                </select>
+              </select>
             </div>
             <div className="five wide field">
               <label>State</label>
@@ -157,6 +157,13 @@ function SignUp() {
           </div>
           <div className="ui button" type="submit" onClick={handleSubmit}>
             Submit
+          </div>
+          <div
+            className="ui button"
+            type="submit"
+            onClick={() => history.push("/login")}
+          >
+            Cancel
           </div>
         </form>
       </div>
