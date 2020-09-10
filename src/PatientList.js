@@ -8,28 +8,31 @@ import { useHistory } from "react-router-dom";
 function PatientList() {
   const [result, setResult] = useState([]);
   const history = useHistory();
-  
-  
+
   const fetch = () => {
     let user_data = localStorage.getItem("user_info");
-    let uname="";
-    let token="";
+    let uname = "";
+    let token = "";
     if (user_data) {
       let userObj = JSON.parse(user_data);
-     
-      uname = userObj.userName
+
+      uname = userObj.userName;
       token = userObj.jwtToken;
-    }else{
+    } else {
       history.push("/dashboard");
     }
 
-    axios.get(`/patients/physician/${uname}`,{headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: `Bearer ${token}`,
-    }}).then((response) => {
-      setResult(response.data);
-    });
+    axios
+      .get(`/patients/physician/${uname}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setResult(response.data);
+      });
   };
 
   useEffect(() => {
@@ -77,15 +80,17 @@ function PatientList() {
                 <td>{row.reportStatus}</td>
                 <td>{row.recovered}</td>
                 <td>
-                  <Link
-                    color="inherit"
-                    onClick={() =>
-                      history.push(`/patients/edit/${row.patientId}`)
-                    }
-                    style={{ textDecoration: "none" }}
-                  >
-                    Update
-                  </Link>
+                  <div className="mini ui button">
+                    <Link
+                      color="inherit"
+                      onClick={() =>
+                        history.push(`/patients/edit/${row.patientId}`)
+                      }
+                      style={{ textDecoration: "none" }}
+                    >
+                      Update
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}
