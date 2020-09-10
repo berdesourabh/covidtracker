@@ -6,36 +6,34 @@ import Link from "@material-ui/core/Link";
 import { useHistory } from "react-router-dom";
 
 function PatientList() {
-
-  const[result,setResult] = useState([]);
+  const [result, setResult] = useState([]);
 
   const history = useHistory();
 
   const fetch = () => {
+    let data = localStorage.getItem("user_info");
+    const [{ userName }] = data;
 
-    //let data = localStorage.getItem('user_data');
-   // const[{userName}] = data;
-
-   let userName = 'abc2@gmail.com';
-
-    axios.get(`/patients/physician/${userName}`)
-         .then((response) => {
-            setResult(response.data);
-
-         })
-  }
+    axios.get(`/patients/physician/${userName}`).then((response) => {
+      setResult(response.data);
+    });
+  };
 
   useEffect(() => {
     fetch();
-  },[]);
-
+  }, []);
 
   return (
     <div className="patientList">
       <BreadCrumbs />
       <div className="patientList__button">
         <h2>My Patients</h2>
-        <div className="ui button">Add Patient</div>
+        <div
+          className="ui button"
+          onClick={() => history.push("/patients/add")}
+        >
+          Add Patient
+        </div>
       </div>
       <div>
         <table className="ui table">
@@ -66,9 +64,11 @@ function PatientList() {
                 <td>{row.reportStatus}</td>
                 <td>{row.recovered}</td>
                 <td>
-                  <Link                    
+                  <Link
                     color="inherit"
-                    onClick={() => history.push(`/patients/edit/${row.patientId}`) }
+                    onClick={() =>
+                      history.push(`/patients/edit/${row.patientId}`)
+                    }
                     style={{ textDecoration: "none" }}
                   >
                     Update

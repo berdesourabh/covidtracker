@@ -40,7 +40,7 @@ function SignUp() {
       })
       .then((response) => {
         dispatch({ type: actionTypes.ADD_USER, user: response.data });
-        history.push("/dashboard");
+        history.push("/signUp/success");
       })
       .catch((err) => console.log(err.message));
   };

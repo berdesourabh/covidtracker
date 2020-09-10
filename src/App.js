@@ -17,8 +17,11 @@ import BreadCrumbs from "./BreadCrumbs";
 import PatientList from "./PatientList";
 import TablePaginationDemo from "./TablePaginationDemo";
 import EditPatient from "./EditPatient";
+import { useHistory } from "react-router-dom";
+import Modal from "./Modal";
 
 function App() {
+  const history = useHistory();
   return (
     <div className="app">
       <Router>
@@ -31,28 +34,32 @@ function App() {
         <Route exact path="/signUp">
           <SignUp />
         </Route>
+        <Route exact path="/signUp/success">
+          <Modal
+            header="Success!"
+            content="Verification email has been sent!"
+          />
+        </Route>
         <div className="app__body">
-          
           <Switch>
-          
             <Route exact path="/dashboard">
               <Header />
               <BreadCrumbs />
               <Reports />
             </Route>
             <Route exact path="/patients">
-            <Header />
+              <Header />
               <PatientList />
             </Route>
             <Route exact path="/pagination">
               <TablePaginationDemo />
             </Route>
             <Route exact path="/patients/add">
-            <Header />
+              <Header />
               <PatientDetail />
             </Route>
             <Route exact path="/patients/edit/:id">
-            <Header />
+              <Header />
               <EditPatient />
             </Route>
           </Switch>

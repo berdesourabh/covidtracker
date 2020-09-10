@@ -7,10 +7,10 @@
   z-index: 100;
   top: 0;
   box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+  align-items: center;
 }
 .header__left {
   display: flex;
-  width: 100%;
   text-align: center;
 }
 .header__left > img {
@@ -34,17 +34,9 @@
 }
 
 .header__right {
-  white-space: nowrap;
-  padding-top: 15px;
-}
-
-.header__info__option {
   display: flex;
   align-items: center;
 }
-
-.header__info__option > p {
-  margin-left: 14px;
-  font-weight: bold;
-  font-size: 1.3rem;
+.header__rightUsername {
+  margin-right: 20px;
 }

@@ -6,31 +6,27 @@ import { useStateValue } from "./StateProvider";
 function Header() {
   const history = useHistory();
   const [{ user }] = useStateValue();
-  const[isLoggedIn,setIsLoggedIn] = useState(false);
-  const[userData,setUserData] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
   const data = () => {
     let user_data = localStorage.getItem("user_info");
-    
-   
-    if(user_data){
+
+    if (user_data) {
       let userObj = JSON.parse(user_data);
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
       setUserData(userObj);
-    }else{
-      setIsLoggedIn(false)
+    } else {
+      setIsLoggedIn(false);
     }
-  
-    
-  }
+  };
   const logout = () => {
     localStorage.removeItem("user_info");
     setIsLoggedIn(false);
-
-  }
+  };
 
   useEffect(() => {
     data();
-  },[]);
+  }, []);
 
   return (
     <div className="header">
@@ -43,40 +39,27 @@ function Header() {
         <p>Covid-19 Tracker</p>
       </div>
       <div className="header__right">
-        <div className="header__info">
-          {/* {user.userName ? ( */}
-          <div className="header__info__option">
-            {isLoggedIn ? ( 
-            <div>
+        {isLoggedIn ? (
+          <>
+            <div className="header__rightUsername">{userData.userName}</div>
             <div
               className="ui button"
               onClick={() => history.push("/patients")}
             >
               My Patients
             </div>
-            <p> {userData.userName} </p>
-            <div
-              className="ui button"
-              onClick={logout}
-            >
-              Log Out
+            <div className="ui button " onClick={logout}>
+              Logout
             </div>
-            </div>) : (
-            <div><div
-            className="ui button"
+          </>
+        ) : (
+          <div
+            className="ui button header__rightOption"
             onClick={() => history.push("/login")}
           >
-            Log In
-          </div></div>)
-            } 
-            {/* <h4>{user?.userName}</h4> */}
+            Login
           </div>
-          {/* ) : ( */}
-          {/* <div className="ui button" onClick={() => history.push("/login")}>
-              Login
-            </div> */}
-          {/* )} */}
-        </div>
+        )}
       </div>
     </div>
   );
