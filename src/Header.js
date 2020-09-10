@@ -41,7 +41,9 @@ function Header() {
       <div className="header__right">
         {isLoggedIn ? (
           <>
-            <div className="header__rightUsername">{userData.userName}</div>
+            <div className="header__rightUsername">
+              {userData.firstName?.concat(" ").concat(userData.lastName)}
+            </div>
             <div
               className="ui button"
               onClick={() => history.push("/patients")}

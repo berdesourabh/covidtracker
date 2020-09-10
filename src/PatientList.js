@@ -64,34 +64,24 @@ function PatientList() {
               <th>Corona Positive</th>
               <th>Report Status</th>
               <th>Recovered</th>
-              <th>Operations</th>
             </tr>
           </thead>
           <tbody>
             {result.map((row) => (
-              <tr key={row.patientId} className="center aligned">
+              <tr
+                key={row.patientId}
+                className="center aligned"
+                onClick={() => history.push(`/patients/edit/${row.patientId}`)}
+              >
                 <td>{row.user.firstName}</td>
                 <td>{row.user.lastName}</td>
                 <td>{row.user.email}</td>
                 <td>{row.user.country}</td>
                 <td>{row.user.state}</td>
                 <td>{row.user.city}</td>
-                <td>{row.coronaPositive}</td>
+                <td>{row.coronaPositive === "Y" ? "Yes" : "No"}</td>
                 <td>{row.reportStatus}</td>
-                <td>{row.recovered}</td>
-                <td>
-                  <div className="mini ui button">
-                    <Link
-                      color="inherit"
-                      onClick={() =>
-                        history.push(`/patients/edit/${row.patientId}`)
-                      }
-                      style={{ textDecoration: "none" }}
-                    >
-                      Update
-                    </Link>
-                  </div>
-                </td>
+                <td>{row.recovered === "Y" ? "Yes" : "No"}</td>
               </tr>
             ))}
           </tbody>
